@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'pwd'
-                sh 'sudo npm install'
+                sh 'npm install'
             }
         }
         stage('Test') {
