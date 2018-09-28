@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $.get("/reports", function(result){
+	    $("div").append(result);
+            //$.each(result, function(i, field){
+            //    $("div").append(field + " ");
+            //});
+            alert(result.data);
+        });
+    });
+});
+</script>
+
+
+</head>
+<body>
+
+<h2>JavaScript getTime()</h2>
+<p>The internal clock in JavaScript counts from midnight January 1, 1970.</p>
+<p>The getTime() function returns the number of milliseconds since then:</p>
+<p id="demo"></p>
+
+<script>
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getTime();
+</script>
+
+<button>Get JSON data</button>
+
+<div>
+
+</div>
+
+</body>
+</html>
+
