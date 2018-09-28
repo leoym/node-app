@@ -1,3 +1,5 @@
+http://localhost:3000/reports/add?device=monitor01&temp-22&umid=55&sensor=off
+
 GET _search
 {
   "query": {

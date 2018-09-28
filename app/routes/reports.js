@@ -36,6 +36,11 @@ router.get('/add', function(req, res, next) {
   var rand = rn(options);
   var data = new Date();
   var corp = 'ABC';
+  var device = req.query.device;
+  var temp = req.query.temp;
+  var umid = req.query.umid;
+  var sensor = req.query.sensor;
+  console.log(device);
   var act  = 'teste 1234';
   var desc = '34324324324';
  
@@ -48,9 +53,13 @@ router.get('/add', function(req, res, next) {
       corp: corp,
       act: act,
       desc: desc, 
+      device: device,
+      temp: temp,
+      umid: umid,
+      sensor: sensor,
       acao: 'log',
       published: true,
-      published_at: '2013-01-01',
+      published_at: data ,
       counter: 1
     }
   });
