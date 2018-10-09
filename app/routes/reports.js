@@ -36,7 +36,6 @@ router.get('/xyz', function(req, res, next) {
     res.send('{id:xyz}');
 });
 
-/* GET reports track listing. */
 router.get('/add', function(req, res, next) {
   var rn = require('random-number');
   var options = {
