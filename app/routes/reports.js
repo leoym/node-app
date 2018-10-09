@@ -79,8 +79,7 @@ router.get('/add', function(req, res, next) {
 });
 
 router.get('/teste', (req, res) => {
-  //fetch('http://127.0.0.1/')
-  fetch('http://localhost:3000/demofile1.html')
+  fetch('https://leoym.github.io/ident.json')
     .then(res => res.text())
     .then(body => {
     console.log(body);
