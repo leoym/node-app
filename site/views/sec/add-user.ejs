@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <style>
+      body {
+        padding: 50px;
+        font: 13px Helvetica, Arial, sans-serif;
+      }
+      .error {
+          color: red
+      }
+      .success {
+          color: green;
+      }
+    </style>
+  </head>
+  <body>
+  <h3>User Add</h3>
+  <%- message %>
+  <h2>Restricted</h2>
+  <form method="post" action="/sec/add-user">
+  <p>
+    <label>Username:</label>
+    <input type="text" name="username">
+  </p>
+  <p>
+    <label>Name:</label>
+    <input type="text" name="name">
+  </p>
+  <p>
+    <input type="submit" value="Save">
+  </p>
+  </form>
+
+   <br/>
+   Click to <a href='/sec/dash'>Dashboard</a>
+   <br/>
+   Click to <a href='/sec/logout'>logout</a>
+  </body>
+</html>

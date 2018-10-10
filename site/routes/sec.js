@@ -131,3 +131,11 @@ app.post('/login', function(req, res){
     }
   });
 });
+
+app.get('/add-user', restrict, function(req, res){
+  res.render('sec/add-user', {title:'Add user', message: 'User added'});
+});
+
+app.post('/add-user', restrict, function(req, res){
+  res.render('sec/add-user', {title:'User Add - ' + req.session.user, message: 'User added: ' + req.body.username + '/'+ req.body.name + ' by: ' + req.session.user});
+});
