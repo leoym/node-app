@@ -61,3 +61,16 @@ TimeoutSec=300
 
 [Install]
 WantedBy=multi-user.target
+
+
+
+
+#####################
+NodeJS + Firebase
+
+https://console.firebase.google.com
+https://firebase.google.com/docs/database/rest/retrieve-data
+https://firebase.google.com/docs/database/web/read-and-write
+https://lym-iot.firebaseio.com/rest/iot-data/education/users.json?print=pretty
+https://rpm.newrelic.com
+

@@ -78,19 +78,40 @@ router.get('/add', function(req, res, next) {
   res.send(String(data.getTime()) + "-"+ rand);
 });
 
+
+const http = require('https');
+
 router.get('/teste', (req, res) => {
-  fetch('https://leoym.github.io/ident.json')
+ 
+   const agent = new http.Agent({
+        keepAlive: true,
+        keepAliveMsecs: 10000000
+    });
+
+    const options = {
+        agent,
+        method: 'GET',
+        timeout: 30,
+        compress: true,
+        headers: { 
+            'Accept-Encoding': 'gzip,deflate'
+        }
+    }; 
+
+  fetch('https://leoym.github.io/ident.json', options)
+  //fetch('https://recs.chaordicsystems.com/v0/events/recommendations?source=app&complete=true&deviceId=dr9gboG4aCg&productId=B78-3351-026&name=product&campaign=netpro_fcbkads&apiKey=netshoes-br&secretKey=1yKEygGFUmQf4%2BRCe6FZ%2Bg%3D%3D&productFormat=compact', options)
     .then(res => res.text())
     .then(body => {
-    console.log(body);
-    console.log(body);
-    console.log(body);
-    console.log(body);
-    console.log(body);
+    //i//console.log(body);
+    //console.log(body);
+    //console.log(body);
+    //console.log(body);
+    //console.log(body);
     res.send(body);
   }).catch((error) => {
-    logger.error(error.message, error);
-    res.status(error.response.status).send(error.response.data);
+    res.send(error);
+    //logger.error(error.message, error);
+    //res.status(error.response.status).send(error.response.data);
   });
 });
 
