@@ -78,25 +78,25 @@ router.get('/add', function(req, res, next) {
   res.send(String(data.getTime()) + "-"+ rand);
 });
 
-
 const http = require('https');
+const https = require('https');
 
 router.get('/teste', (req, res) => {
- 
+
    const agent = new http.Agent({
         keepAlive: true,
         keepAliveMsecs: 10000000
     });
 
     const options = {
-        agent,
+        //agent,
         method: 'GET',
         timeout: 30,
         compress: true,
-        headers: { 
+        headers: {
             'Accept-Encoding': 'gzip,deflate'
         }
-    }; 
+    };
 
   fetch('https://leoym.github.io/ident.json', options)
   //fetch('https://recs.chaordicsystems.com/v0/events/recommendations?source=app&complete=true&deviceId=dr9gboG4aCg&productId=B78-3351-026&name=product&campaign=netpro_fcbkads&apiKey=netshoes-br&secretKey=1yKEygGFUmQf4%2BRCe6FZ%2Bg%3D%3D&productFormat=compact', options)
@@ -113,6 +113,90 @@ router.get('/teste', (req, res) => {
     //logger.error(error.message, error);
     //res.status(error.response.status).send(error.response.data);
   });
+});
+
+router.get('/teste1', (req, res) => {
+
+   const agent = new http.Agent({
+        keepAlive: true,
+        keepAliveMsecs: 10000000
+    });
+
+    const options = {
+        host: 'objecthub.io',
+        port: 443,
+        path: '/admin/metrics/main.json',
+        method: 'GET',
+        agent: agent
+    };
+
+  var req = https.request(options, function(res) {
+
+    var str = "";
+    res.on('data', function (chunk) {
+       str += chunk;
+    });
+
+    res.on('end', function () {
+       // done
+    });
+    console.log(str);
+  });
+
+  req.write('');
+  req.end();
+
+  req.on('error', function(e) {
+   // error
+  });
+
+  res.send( "OK");
+
+});
+
+router.get('/teste2', (req, res) => {
+
+  var request = require('request');
+  request('https://recs.chaordicsystems.com/v0/events/recommendations?source=app&complete=true&deviceId=dr9gboG4aCg&productId=B78-3351-026&name=product&campaign=netpro_fcbkads&apiKey=netshoes-br&secretKey=1yKEygGFUmQf4%2BRCe6FZ%2Bg%3D%3D&productFormat=compact', function (error, response, body) {
+  console.log("OK");
+  res.send( "OK");
+  console.log('error:', error); // Print the error if one occurred
+  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  //console.log('body:', body); // Print the HTML for the Google homepage.
+  });
+
+});
+
+router.get('/teste3', (req, res) => {
+ 
+   const agent = new http.Agent({
+        keepAlive: true,
+        keepAliveMsecs: 10000000
+    });
+
+    const options = {
+        host: 'objecthub.io',
+        port: 443,
+        path: '/admin/metrics/main.json',
+        method: 'GET',
+        agent: agent
+    }; 
+
+  https.request(options, function(resp) {
+
+    var str = "";
+    resp.on('data', function (chunk) {
+       str += chunk;
+    });
+
+    resp.on('end', function () {
+       // done
+       res.send("OK");
+    });
+    console.log("str");
+  });
+
+ res.send("OK");
 });
 
 router.get('/file', (req, res) => {
@@ -161,5 +245,42 @@ function GetSite() {
 
     return resposta;
 }
+
+router.get('/stress', (req, res) => {
+
+const https = require('https');
+
+var agent = new https.Agent({
+    keepAlive: true
+});
+
+const options = {
+  agent,
+  hostname: 'recs.chaordicsystems.com',
+  port: 443,
+  path: '/v0/events/recommendations?source=app&complete=true&deviceId=dr9gboG4aCg&productId=B78-3351-026&name=product&campaign=netpro_fcbkads&apiKey=netshoes-br&secretKey=1yKEygGFUmQf4%2BRCe6FZ%2Bg%3D%3D&productFormat=compact',
+  method: 'GET'
+};
+
+const reqC = https.request(options, (resC) => {
+  var start = new Date().getTime();
+  var ret = "";
+  //console.log('statusCode:', res.statusCode);
+  //console.log('headers:', res.headers);
+  resC.on('data', (d) => {
+    //process.stdout.write(d);
+    ret = ret + d;
+    console.log('Completed after '+(new Date().getTime() - start));
+  });
+  res.send(ret);
+});
+
+reqC.on('error', (e) => {
+  console.error(e);
+});
+reqC.end();
+
+//res.send('OK');
+});
 
 module.exports = router;

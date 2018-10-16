@@ -18,6 +18,7 @@
     "newrelic": "^4.9.0",
     "node-fetch": "^2.2.0",
     "random": "^2.0.12",
-    "random-number": "0.0.9"
+    "random-number": "0.0.9",
+    "request": "^2.88.0"
   }
 }
