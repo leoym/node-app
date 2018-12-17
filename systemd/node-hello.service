@@ -1,0 +1,6 @@
+[Service]
+ExecStart=/usr/bin/node /opt/node-app/systemd/app.js
+WorkingDirectory=/opt/node-app/systemd
+StandardOutput=syslog
+User=nobody
+Group=nobody
